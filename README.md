@@ -42,5 +42,8 @@ Le second jeu de données est disponible sur [Kaggle](https://www.kaggle.com/dat
 Le dernier jeu de données est accessible sur [BGG](https://boardgamegeek.com/wiki/page/BGG_XML_API2).
 
 ## Objectifs du projet
-
+Faire un radar-chart d'un jeu, voir d'une famille ou d'une mécanique en faisant des notes moyennes pour les items à mettre sur le radar. 
+Les items pourraient être la complexité moyenne, la note moyenne des utilisateurs, le temps moyen de jeu, la note moyenne BGG.
+Par filtre on pourrait avoir dynamiquement un histogramme des jeux sortis par année.
+Par filtre on pourrait avoir un word-chart avec les mécaniques les plus fréquentes.
 ## Schéma du projet

@@ -25,7 +25,7 @@ def join_df(df_left: pd.DataFrame, df_right: pd.DataFrame, key_left: str, key_ri
         how_join (str): type de jointure (left, right, inner, etc)
 
     Returns:
-        pd.DataFrame: dataframe
+        pd.DataFrame: jointure des deux dataframes
     """
     return df_left.merge(df_right,how=how_join,left_on=key_left,right_on=key_right ) # type: ignore
 
@@ -41,3 +41,23 @@ def choose_columns(df: pd.DataFrame, columns: list) -> pd.DataFrame:
         pd.DataFrame: df enfant
     """
     return df[columns]
+
+
+def clean_data(df: pd.DataFrame, object_float: list, fillna: dict, type_dict: dict ) -> pd.DataFrame:
+    """Nettoyage du df en supprimant les IDs nuls et en changeant les types des colonnes
+
+    Args:
+        df (pd.DataFrame): df à nettoyer
+        object_float (list): liste des colonnes où il faut remplacer le '.' par ','
+        fillna (dict): dictionnaire avec pour clés les colonnes et en valeur la valeur à utiliser pour remplir les cellules NA
+        type_dict (dict): dictionnaire avec pour clés les colonnes et en valeur le type à appliquer
+
+    Returns:
+        pd.DataFrame: df clean
+    """
+    df=df.dropna(subset='ID')
+    for k in object_float:
+        df[k]=df[k].str.replace(",", ".")
+    df=df.fillna(fillna)
+    df=df.astype(type_dict)
+    return df

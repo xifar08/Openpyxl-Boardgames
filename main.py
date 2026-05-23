@@ -1,5 +1,5 @@
-from utils import get_data, join_df, choose_columns
-from config import URL1, URL2, URL3, COLUMNS
+from utils import get_data, join_df, choose_columns, clean_data
+from config import URL1, URL2, URL3, COLUMNS, OBJECT_FLOAT, FILL_NA, NEW_TYPE
 
 
 def main():
@@ -12,8 +12,9 @@ def main():
 
     df_main=choose_columns(df_main, COLUMNS)
 
-    print(df_main.columns)
-    print(df_main.dtypes)
+    df_main=clean_data(df_main, OBJECT_FLOAT, FILL_NA, NEW_TYPE)
+
+    print(df_main.info())
 
 
 if __name__ == "__main__":

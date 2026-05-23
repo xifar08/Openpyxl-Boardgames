@@ -1,5 +1,10 @@
+from utils import get_data
+from config import URL
+
+
 def main():
-    print("Hello from projet-openpyxl!")
+    df = get_data(URL, sep=';')
+    print(df.head(5))
 
 
 if __name__ == "__main__":

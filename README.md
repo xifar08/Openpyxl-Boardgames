@@ -46,4 +46,5 @@ Faire un radar-chart d'un jeu, voir d'une famille ou d'une mécanique en faisant
 Les items pourraient être la complexité moyenne, la note moyenne des utilisateurs, le temps moyen de jeu, la note moyenne BGG.
 Par filtre on pourrait avoir dynamiquement un histogramme des jeux sortis par année.
 Par filtre on pourrait avoir un word-chart avec les mécaniques les plus fréquentes.
+
 ## Schéma du projet

@@ -48,3 +48,4 @@ Par filtre on pourrait avoir dynamiquement un histogramme des jeux sortis par an
 Par filtre on pourrait avoir un word-chart avec les mécaniques les plus fréquentes.
 
 ## Schéma du projet
+<img src='https://github.com/xifar08/Openpyxl-Boardgames/blob/main/assets/sch%C3%A9ma%20intitial.png'>

@@ -61,3 +61,7 @@ def clean_data(df: pd.DataFrame, object_float: list, fillna: dict, type_dict: di
     df=df.fillna(fillna)
     df=df.astype(type_dict)
     return df
+
+
+def save_data(df: pd.DataFrame):
+    return pd.DataFrame.to_excel(df, excel_writer='template.xlsx', sheet_name='DATA', index=False)

@@ -1,18 +1,6 @@
-from openpyxl import Workbook
-wb = Workbook()
+from openpyxl import load_workbook
 
-# grab the active worksheet
-ws = wb.active
-
-# Data can be assigned directly to cells
-ws['A1'] = 42
-
-# Rows can also be appended
-ws.append([1, 2, 3])
-
-# Python types will automatically be converted
-import datetime
-ws['A2'] = datetime.datetime.now()
-
-# Save the file
-wb.save("sample.xlsx")
+def create_ws(path: str, sheet_name: str, save_as: str):
+    wb = load_workbook(filename = path)
+    ws = wb.create_sheet(sheet_name, 0)
+    wb.save(save_as)

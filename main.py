@@ -25,7 +25,7 @@ def main():
         save_data(df_main)
         print(f"Données exportées au format .xlsx en {time.perf_counter()-t:.2f}s")
 
-        create_ws("template.xlsx","TDB","test.xlsx")
+        ws=create_ws("template.xlsx","TDB","test.xlsx")
         print(f"Feuille TDB créée en {time.perf_counter()-t:.2f}s")
     
     except Exception as e:

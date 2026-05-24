@@ -63,5 +63,13 @@ def clean_data(df: pd.DataFrame, object_float: list, fillna: dict, type_dict: di
     return df
 
 
-def save_data(df: pd.DataFrame):
+def save_data(df: pd.DataFrame) -> None:
+    """Sauvegarder les données sous format excel
+
+    Args:
+        df (pd.DataFrame): df propre
+
+    Returns:
+        _type_: fichier excel
+    """
     return pd.DataFrame.to_excel(df, excel_writer='template.xlsx', sheet_name='DATA', index=False)

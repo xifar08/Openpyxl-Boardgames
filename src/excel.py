@@ -8,6 +8,13 @@ from openpyxl.chart import (
     #existe bien
     Series
 )
+from openpyxl.worksheet.filters import (
+    FilterColumn,
+    CustomFilter,
+    CustomFilters,
+    DateGroupItem,
+    Filters,
+    )
 
 def load_wb(path: str) -> Workbook:
     #ajouter la docstring
@@ -101,4 +108,11 @@ def bubble_chart(wb: Workbook,
 
     worksheet_chart.add_chart(c1, where)
 
+    wb.save(save_as)
+
+
+def add_filter(wb: Workbook, worksheet: Worksheet, range: str, save_as: str) -> None:
+    filters = worksheet.auto_filter
+    # peu importe la ligne de fin mais il faut les bonnes colonnes
+    filters.ref = range
     wb.save(save_as)

@@ -55,6 +55,7 @@ def scatter_chart(
         max_row: int, 
         save_as: str) -> None :
     
+    # ajouter la docstring
     # Pas convaincu par le résultat, je ne pense pas que ça fasse réellement un nuage de points, ça relie les points entre eux.
     c1 = ScatterChart()
     # c1.title = "Complexité vs Note utilisateur"
@@ -90,7 +91,7 @@ def bubble_chart(wb: Workbook,
         min_row: int, 
         max_row: int, 
         save_as: str) -> None :
-    
+    # ajouter la docstring
     c1 = BubbleChart()
     # c1.title = "Complexité vs Note utilisateur"
     c1.style = 1
@@ -112,6 +113,7 @@ def bubble_chart(wb: Workbook,
 
 
 def add_filter(wb: Workbook, worksheet: Worksheet, range: str, save_as: str) -> None:
+    # ajouter la docstring
     filters = worksheet.auto_filter
     # peu importe la ligne de fin mais il faut les bonnes colonnes
     filters.ref = range

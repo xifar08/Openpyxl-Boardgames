@@ -7,3 +7,6 @@
 - pour la création de feuille, peut être voir pour choisir la position
 - main.py doit être dans le src
 - mettre des __init__.py dans chaque dossier, ça indique à python que le dossier est un package
+- utiliser la version 3.1.3 d'openpyxl (c'est bon)
+- faire la fonction pour ajouter la fonction FILTER et la data validation 
+- j'ai interverti le nom des axes

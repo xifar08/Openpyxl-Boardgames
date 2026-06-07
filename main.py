@@ -1,6 +1,7 @@
 from src.utils import get_data, join_df, choose_columns, clean_data, save_data
 from src.config import URL1, URL2, URL3, COLUMNS, OBJECT_FLOAT, FILL_NA, NEW_TYPE
 from src.excel import load_wb, create_ws, scatter_chart, copy_columns, bubble_chart, data_validation
+from openpyxl.worksheet.formula import ArrayFormula
 import time
 
 
@@ -43,16 +44,24 @@ def main():
         copy_columns(wb,wb["DATA"],wb["SCATTER"],col_data=14, col_destination=4,min_row=1,save_as="test.xlsx")
         print("Données 4eme colonne copiées dans la feuille Scatter")
 
-        bubble_chart(wb,wb["TDB"],wb["SCATTER"],where="A10",col_x=1,col_y=2,col_size=3,min_row=1,max_row=200,save_as="test.xlsx")
-        print("Bubble plot tracé")
-        scatter_chart(wb,wb["TDB"],wb["SCATTER"],where="M10",col_x=1,col_y=2,min_row=1,max_row=200,save_as="test.xlsx")
-        print("Scatter plot tracé")
+        # bubble_chart(wb,wb["TDB"],wb["SCATTER"],where="A10",col_x=1,col_y=2,col_size=3,min_row=1,max_row=200,save_as="test.xlsx")
+        # print("Bubble plot tracé")
+        # scatter_chart(wb,wb["TDB"],wb["SCATTER"],where="M10",col_x=1,col_y=2,min_row=1,max_row=200,save_as="test.xlsx")
+        # print("Scatter plot tracé")
 
         # add_filter(wb,wb["SCATTER"],range="A1:D2",save_as="test.xlsx")
         # print("Filtre ajouté")
 
         data_validation(wb=wb,worksheet_data=wb["SCATTER"],worksheet_tdb=wb["TDB"],col_data=4,col_tdb=26,data_title="Liste_domaine",where_tdb="A2",save_as="test.xlsx")
         print("Liste des domaines ajoutée.")
+
+        formula = '=_xlfn.FILTER(SCATTER!A:D,SCATTER!D:D=TDB!A2,"")'
+        ws=wb["TDB"]
+        ws["AA1"] = ArrayFormula("AA:AD", formula)
+        print("Ajout des données de SCATTER dans TDB pour être filtrées")
+
+        scatter_chart(wb,wb["TDB"],wb["TDB"],where="A10",col_x=28,col_y=27,min_row=1,max_row=1000,save_as="test.xlsx")
+        print("Scatter plot tracé")
 
     except Exception as e:
         print(f"Erreur : {type(e).__name__}: {e}")

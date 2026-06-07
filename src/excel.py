@@ -20,6 +20,8 @@ from openpyxl.worksheet.datavalidation import DataValidation
 from openpyxl.workbook.defined_name import DefinedName
 from openpyxl.utils import get_column_letter
 
+
+
 def load_wb(path: str) -> Workbook:
     #ajouter la docstring
     # c'est un wrapper, pas nécessaire
@@ -28,8 +30,10 @@ def load_wb(path: str) -> Workbook:
 
 def create_ws(wb: Workbook, sheet_name: str, save_as: str):
     # ajouter la docstring
+    # c'est un wrapper, pas nécessaire
     ws = wb.create_sheet(sheet_name, 0)
     wb.save(save_as)
+
 
 def copy_columns(
         wb: Workbook, 
@@ -75,7 +79,7 @@ def scatter_chart(
     # Pas convaincu par le résultat, je ne pense pas que ça fasse réellement un nuage de points, ça relie les points entre eux.
     c1 = ScatterChart()
     # c1.title = "Complexité vs Note utilisateur"
-    c1.style = 5
+    #c1.style = 5
     c1.legend = None
     c1.y_axis.title = 'Note utilisateur'
     c1.x_axis.title = 'Complexité'

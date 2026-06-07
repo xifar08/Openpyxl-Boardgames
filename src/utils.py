@@ -27,6 +27,7 @@ def join_df(df_left: pd.DataFrame, df_right: pd.DataFrame, key_left: str, key_ri
     Returns:
         pd.DataFrame: jointure des deux dataframes
     """
+    # fonction inutile car c'est juste un merge en pandas
     return df_left.merge(df_right,how=how_join,left_on=key_left,right_on=key_right ) # type: ignore
 
 

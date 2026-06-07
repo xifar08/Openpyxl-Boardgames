@@ -1,6 +1,6 @@
 from src.utils import get_data, join_df, choose_columns, clean_data, save_data
 from src.config import URL1, URL2, URL3, COLUMNS, OBJECT_FLOAT, FILL_NA, NEW_TYPE
-from src.excel import load_wb, create_ws, scatter_chart, copy_columns, bubble_chart, add_filter
+from src.excel import load_wb, create_ws, scatter_chart, copy_columns, bubble_chart, data_validation
 import time
 
 
@@ -48,9 +48,12 @@ def main():
         scatter_chart(wb,wb["TDB"],wb["SCATTER"],where="M10",col_x=1,col_y=2,min_row=1,max_row=200,save_as="test.xlsx")
         print("Scatter plot tracé")
 
-        add_filter(wb,wb["SCATTER"],range="A1:D2",save_as="test.xlsx")
-        print("Filtre ajouté")
-    
+        # add_filter(wb,wb["SCATTER"],range="A1:D2",save_as="test.xlsx")
+        # print("Filtre ajouté")
+
+        data_validation(wb=wb,worksheet_data=wb["SCATTER"],worksheet_tdb=wb["TDB"],col_data=4,col_tdb=26,data_title="Liste_domaine",where_tdb="A2",save_as="test.xlsx")
+        print("Liste des domaines ajoutée.")
+
     except Exception as e:
         print(f"Erreur : {type(e).__name__}: {e}")
 

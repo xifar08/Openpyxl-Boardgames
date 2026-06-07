@@ -10,3 +10,4 @@
 - utiliser la version 3.1.3 d'openpyxl (c'est bon)
 - faire la fonction pour ajouter la fonction FILTER et la data validation 
 - j'ai interverti le nom des axes
+- gérer les noms de domaine vide : leur donner une valeur

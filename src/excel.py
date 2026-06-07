@@ -16,8 +16,13 @@ from openpyxl.worksheet.filters import (
     Filters,
     )
 
+from openpyxl.worksheet.datavalidation import DataValidation
+from openpyxl.workbook.defined_name import DefinedName
+from openpyxl.utils import get_column_letter
+
 def load_wb(path: str) -> Workbook:
     #ajouter la docstring
+    # c'est un wrapper, pas nécessaire
     return load_workbook(filename = path)
 
 
@@ -26,14 +31,25 @@ def create_ws(wb: Workbook, sheet_name: str, save_as: str):
     ws = wb.create_sheet(sheet_name, 0)
     wb.save(save_as)
 
-def copy_columns(wb: Workbook, 
-                 ws_data: Worksheet, 
-                 ws_destination: Worksheet, 
-                 col_data: int, 
-                 col_destination: int, 
-                 min_row: int, 
-                 save_as: str) -> None :
-    # ajouter la docstring
+def copy_columns(
+        wb: Workbook, 
+        ws_data: Worksheet, 
+        ws_destination: Worksheet, 
+        col_data: int, 
+        col_destination: int, 
+        min_row: int, 
+        save_as: str) -> None :
+    """_summary_
+
+    Args:
+        wb (Workbook): _description_
+        ws_data (Worksheet): _description_
+        ws_destination (Worksheet): _description_
+        col_data (int): _description_
+        col_destination (int): _description_
+        min_row (int): _description_
+        save_as (str): _description_
+    """
     row_line = min_row
     for row in ws_data.iter_rows(min_row=min_row, max_row=ws_data.max_row):
         val=row[col_data-1].value
@@ -55,7 +71,7 @@ def scatter_chart(
         max_row: int, 
         save_as: str) -> None :
     
-    # ajouter la docstring
+    
     # Pas convaincu par le résultat, je ne pense pas que ça fasse réellement un nuage de points, ça relie les points entre eux.
     c1 = ScatterChart()
     # c1.title = "Complexité vs Note utilisateur"
@@ -81,7 +97,8 @@ def scatter_chart(
     wb.save(save_as)
 
 
-def bubble_chart(wb: Workbook, 
+def bubble_chart(
+        wb: Workbook, 
         worksheet_chart: Worksheet, 
         worksheet_data: Worksheet, 
         where: str, 
@@ -91,7 +108,20 @@ def bubble_chart(wb: Workbook,
         min_row: int, 
         max_row: int, 
         save_as: str) -> None :
-    # ajouter la docstring
+    """_summary_
+
+    Args:
+        wb (Workbook): _description_
+        worksheet_chart (Worksheet): _description_
+        worksheet_data (Worksheet): _description_
+        where (str): _description_
+        col_x (int): _description_
+        col_y (int): _description_
+        col_size (int): _description_
+        min_row (int): _description_
+        max_row (int): _description_
+        save_as (str): _description_
+    """
     c1 = BubbleChart()
     # c1.title = "Complexité vs Note utilisateur"
     c1.style = 1
@@ -113,8 +143,69 @@ def bubble_chart(wb: Workbook,
 
 
 def add_filter(wb: Workbook, worksheet: Worksheet, range: str, save_as: str) -> None:
-    # ajouter la docstring
+    """_summary_
+
+    Args:
+        wb (Workbook): _description_
+        worksheet (Worksheet): _description_
+        range (str): _description_
+        save_as (str): _description_
+    """
     filters = worksheet.auto_filter
     # peu importe la ligne de fin mais il faut les bonnes colonnes
     filters.ref = range
+    wb.save(save_as)
+
+
+def data_validation(
+        wb: Workbook, 
+        worksheet_data: Worksheet, 
+        worksheet_tdb: Worksheet, 
+        col_data: int,
+        col_tdb: int,
+        data_title : str,
+        where_tdb :str,
+        save_as: str) -> None:
+    """_summary_
+
+    Args:
+        wb (Workbook): _description_
+        worksheet_data (Worksheet): _description_
+        worksheet_tdb (Worksheet): _description_
+        col_data (int): _description_
+        save_as (str): _description_
+    """
+    data=[]
+    seen=set()
+
+    for row in range(2, worksheet_data.max_row + 1):
+        value = worksheet_data.cell(row=row, column=col_data).value
+        if value is not None and str(value).strip() != "":
+            value=str(value)
+            if value not in seen :
+                seen.add(value)
+                data.append(value)
+    
+    data.sort()
+
+    worksheet_tdb.cell(row = 1, column = col_tdb).value = data_title
+    for i, j in enumerate(data, start= 2):
+        worksheet_tdb.cell(row = i, column = col_tdb).value = j
+
+    if data_title in wb.defined_names:
+        del wb.defined_names[data_title]
+
+    end_row = 2 + len(data) - 1
+    col_letter = get_column_letter(col_tdb)
+    ref_data = "'" + worksheet_tdb.title + "'!$" + col_letter + "$2:$" + col_letter + "$" + str(end_row)
+    wb.defined_names[data_title] = DefinedName(data_title, attr_text=ref_data)
+    
+    dv = DataValidation(type="list", formula1=f"={data_title}", allow_blank=True)
+    dv.prompt = "Choisis un domaine"
+    dv.promptTitle = "Domain"
+    dv.error = "Valeur non autorisée"
+    dv.errorTitle = "Erreur"
+
+    worksheet_tdb.add_data_validation(dv)
+    dv.add(where_tdb)
     wb.save(save_as)

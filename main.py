@@ -1,4 +1,4 @@
-from openpyxl_boardgames.utils import get_data, join_df, choose_columns, clean_data, save_data
+from openpyxl_boardgames.utils import get_data, join_df, choose_columns, clean_data, save_data, normalize
 from openpyxl_boardgames.config import URL1, URL2, URL3, COLUMNS, OBJECT_FLOAT, FILL_NA, NEW_TYPE
 from openpyxl_boardgames.excel import load_wb, create_ws, scatter_chart, copy_columns, bar_chart, data_validation
 from openpyxl.worksheet.formula import ArrayFormula
@@ -23,6 +23,12 @@ def main():
         df_main=clean_data(df_main, OBJECT_FLOAT, FILL_NA, NEW_TYPE)
         print("Données nettoyées")
 
+        df_main=normalize(df_main,"Rating Average","Rating Average n")
+        df_main=normalize(df_main,"Complexity Average","Complexity Average n")
+        df_main=normalize(df_main,"Users Rated", "Users Rated n")
+        df_main=normalize(df_main,"Owned Users", "Owned Users n")
+        print("Données normalisées")
+
         save_data(df_main)
         print("Données exportées au format .xlsx")
 
@@ -34,6 +40,8 @@ def main():
 
         create_ws(wb,"SCATTER","output/test/test.xlsx")
         print("Feuille SCATTER créée")
+
+        # les copies des feuilles prennent bcp de temps et je pense que ce n'est pas nécessaire, je peux filtrer directement sur data
 
         copy_columns(wb,wb["DATA"],wb["SCATTER"],col_data=10, col_destination=1,min_row=1,save_as="output/test/test.xlsx")
         print("Données BGG rank copiées dans la feuille Scatter")
@@ -49,6 +57,12 @@ def main():
         print("Données Name copiées dans la feuille Scatter")
         copy_columns(wb,wb["DATA"],wb["SCATTER"],col_data=12, col_destination=7,min_row=1,save_as="output/test/test.xlsx")
         print("Données Owned User copiées dans la feuille Scatter")
+        copy_columns(wb,wb["DATA"],wb["SCATTER"],col_data=27, col_destination=8,min_row=1,save_as="output/test/test.xlsx")
+        copy_columns(wb,wb["DATA"],wb["SCATTER"],col_data=28, col_destination=9,min_row=1,save_as="output/test/test.xlsx")
+        copy_columns(wb,wb["DATA"],wb["SCATTER"],col_data=29, col_destination=10,min_row=1,save_as="output/test/test.xlsx")
+        copy_columns(wb,wb["DATA"],wb["SCATTER"],col_data=30, col_destination=11,min_row=1,save_as="output/test/test.xlsx")
+        print("Données normailsées copiées dans la feuille SCATTER")
+
 
         data_validation(wb=wb,worksheet_data=wb["SCATTER"],worksheet_tdb=wb["TDB"],col_data=5,col_tdb=26,data_title="Liste_domaine",where_tdb="A2",save_as="output/test/test.xlsx")
         ws_tdb=wb["TDB"]
@@ -57,8 +71,8 @@ def main():
 
         jeux = dict(df_main["Domains"].value_counts())
         longueur_max=max(jeux.values())
-        formula = '=_xlfn.FILTER(SCATTER!A:G,SCATTER!E:E=TDB!A2,"")'
-        ws_tdb["AA1"] = ArrayFormula(f"AA1:AG{longueur_max}", formula)
+        formula = '=_xlfn.FILTER(SCATTER!A:K,SCATTER!E:E=TDB!A2,"")'
+        ws_tdb["AA1"] = ArrayFormula(f"AA1:AK{longueur_max}", formula)
         print("Ajout des données de SCATTER dans TDB pour être filtrées")
 
         scatter_chart(wb,wb["TDB"],wb["TDB"],where="A10",col_x=29,col_y=28,min_row=1,max_row=1000,save_as="output/test/test.xlsx")
@@ -73,6 +87,15 @@ def main():
         ws_tdb["C1"]="Rang BGG médian"
         ws_tdb["C2"]='=_xlfn.AGGREGATE(12,6,AA:AA)'
         print("KPI médiane ajouté")
+
+        ws_tdb["D1"]="Note moyenne normalisée"
+        ws_tdb["D2"]='=_xlfn.AGGREGATE(1,6,AH:AH)'
+        ws_tdb["E1"]="Complexité moyenne normalisée"
+        ws_tdb["E2"]='=_xlfn.AGGREGATE(1,6,AI:AI)'
+        ws_tdb["F1"]="Nombre moyen d'avis"
+        ws_tdb["F2"]='=_xlfn.AGGREGATE(1,6,AJ:AJ)'
+        ws_tdb["G1"]="Nombre moyen de jeux possédés"
+        ws_tdb["G2"]='=_xlfn.AGGREGATE(1,6,AK:AK)'
         wb.save("output/test/test.xlsx")
 
     except Exception as e:

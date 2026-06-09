@@ -77,7 +77,6 @@ def scatter_chart(
         save_as: str) -> None :
     
     
-    # Pas convaincu par le résultat, je ne pense pas que ça fasse réellement un nuage de points, ça relie les points entre eux.
     c1 = ScatterChart()
     # c1.title = "Complexité vs Note utilisateur"
     #c1.style = 5

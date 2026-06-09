@@ -65,6 +65,7 @@ def clean_data(df: pd.DataFrame, object_float: list, fillna: dict, type_dict: di
 
 
 def save_data(df: pd.DataFrame) -> None:
+    # c'est un wrapper, à enlever
     """Sauvegarder les données sous format excel
 
     Args:
@@ -74,3 +75,8 @@ def save_data(df: pd.DataFrame) -> None:
         _type_: fichier excel
     """
     return pd.DataFrame.to_excel(df, excel_writer='template.xlsx', sheet_name='DATA', index=False)
+
+
+def normalize(df: pd.DataFrame, column: str, new_column: str):
+    df[new_column] = (df[column] - df[column].min()) / (df[column].max() - df[column].min())
+    return df

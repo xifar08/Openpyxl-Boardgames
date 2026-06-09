@@ -78,5 +78,5 @@ def save_data(df: pd.DataFrame) -> None:
 
 
 def normalize(df: pd.DataFrame, column: str, new_column: str):
-    df[new_column] = (df[column] - df[column].min()) / (df[column].max() - df[column].min())
+    df[new_column] = (df[column] - df[column].mean()) / (df[column].std())
     return df

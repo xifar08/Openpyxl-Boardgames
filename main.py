@@ -1,6 +1,6 @@
 from src.utils import get_data, join_df, choose_columns, clean_data, save_data
 from src.config import URL1, URL2, URL3, COLUMNS, OBJECT_FLOAT, FILL_NA, NEW_TYPE
-from src.excel import load_wb, create_ws, scatter_chart, copy_columns, bubble_chart, data_validation
+from src.excel import load_wb, create_ws, scatter_chart, copy_columns, bar_chart, data_validation
 from openpyxl.worksheet.formula import ArrayFormula
 import time
 
@@ -35,33 +35,35 @@ def main():
         create_ws(wb,"SCATTER","test.xlsx")
         print("Feuille SCATTER créée")
 
-        copy_columns(wb,wb["DATA"],wb["SCATTER"],col_data=9, col_destination=1,min_row=1,save_as="test.xlsx")
-        print("Données 1ere colonne copiées dans la feuille Scatter")
-        copy_columns(wb,wb["DATA"],wb["SCATTER"],col_data=11, col_destination=2,min_row=1,save_as="test.xlsx")
-        print("Données 2eme colonne copiées dans la feuille Scatter")
-        copy_columns(wb,wb["DATA"],wb["SCATTER"],col_data=8, col_destination=3,min_row=1,save_as="test.xlsx")
-        print("Données 3eme colonne copiées dans la feuille Scatter")
-        copy_columns(wb,wb["DATA"],wb["SCATTER"],col_data=14, col_destination=4,min_row=1,save_as="test.xlsx")
-        print("Données 4eme colonne copiées dans la feuille Scatter")
+        copy_columns(wb,wb["DATA"],wb["SCATTER"],col_data=10, col_destination=1,min_row=1,save_as="test.xlsx")
+        print("Données BGG rank copiées dans la feuille Scatter")
+        copy_columns(wb,wb["DATA"],wb["SCATTER"],col_data=9, col_destination=2,min_row=1,save_as="test.xlsx")
+        print("Données Rating copiées dans la feuille Scatter")
+        copy_columns(wb,wb["DATA"],wb["SCATTER"],col_data=11, col_destination=3,min_row=1,save_as="test.xlsx")
+        print("Données Complexity copiées dans la feuille Scatter")
+        copy_columns(wb,wb["DATA"],wb["SCATTER"],col_data=8, col_destination=4,min_row=1,save_as="test.xlsx")
+        print("Données User rated copiées dans la feuille Scatter")
+        copy_columns(wb,wb["DATA"],wb["SCATTER"],col_data=14, col_destination=5,min_row=1,save_as="test.xlsx")
+        print("Données Domains copiées dans la feuille Scatter")
+        copy_columns(wb,wb["DATA"],wb["SCATTER"],col_data=2, col_destination=6,min_row=1,save_as="test.xlsx")
+        print("Données Name copiées dans la feuille Scatter")
+        copy_columns(wb,wb["DATA"],wb["SCATTER"],col_data=12, col_destination=7,min_row=1,save_as="test.xlsx")
+        print("Données Owned User copiées dans la feuille Scatter")
 
-        # bubble_chart(wb,wb["TDB"],wb["SCATTER"],where="A10",col_x=1,col_y=2,col_size=3,min_row=1,max_row=200,save_as="test.xlsx")
-        # print("Bubble plot tracé")
-        # scatter_chart(wb,wb["TDB"],wb["SCATTER"],where="M10",col_x=1,col_y=2,min_row=1,max_row=200,save_as="test.xlsx")
-        # print("Scatter plot tracé")
+        data_validation(wb=wb,worksheet_data=wb["SCATTER"],worksheet_tdb=wb["TDB"],col_data=5,col_tdb=26,data_title="Liste_domaine",where_tdb="A2",save_as="test.xlsx")
+        ws_tdb=wb["TDB"]
+        ws_tdb["A1"] = "Filtre Famille"
+        print("Liste des familles ajoutée.")
 
-        # add_filter(wb,wb["SCATTER"],range="A1:D2",save_as="test.xlsx")
-        # print("Filtre ajouté")
-
-        data_validation(wb=wb,worksheet_data=wb["SCATTER"],worksheet_tdb=wb["TDB"],col_data=4,col_tdb=26,data_title="Liste_domaine",where_tdb="A2",save_as="test.xlsx")
-        print("Liste des domaines ajoutée.")
-
-        formula = '=_xlfn.FILTER(SCATTER!A:D,SCATTER!D:D=TDB!A2,"")'
-        ws=wb["TDB"]
-        ws["AA1"] = ArrayFormula("AA:AD", formula)
+        formula = '=_xlfn.FILTER(SCATTER!A:G,SCATTER!E:E=TDB!A2,"")'
+        ws_tdb["AA1"] = ArrayFormula("AA:AG", formula)
         print("Ajout des données de SCATTER dans TDB pour être filtrées")
 
-        scatter_chart(wb,wb["TDB"],wb["TDB"],where="A10",col_x=28,col_y=27,min_row=1,max_row=1000,save_as="test.xlsx")
+        scatter_chart(wb,wb["TDB"],wb["TDB"],where="A10",col_x=29,col_y=28,min_row=1,max_row=1000,save_as="test.xlsx")
         print("Scatter plot tracé")
+
+        bar_chart(wb,wb["TDB"],wb["TDB"],where="M10",col_x=32,col_y=33,min_row=1,max_row=10,save_as="test.xlsx")
+        print("Bar plot tracé")
 
     except Exception as e:
         print(f"Erreur : {type(e).__name__}: {e}")

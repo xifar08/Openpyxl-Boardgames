@@ -5,6 +5,7 @@ from openpyxl.chart import (
     ScatterChart,
     BubbleChart,
     Reference,
+    BarChart,
     #existe bien
     Series
 )
@@ -88,7 +89,7 @@ def scatter_chart(
 
     x_values = Reference(worksheet_data, min_col=col_x, min_row=min_row, max_row=max_row)
     y_values = Reference(worksheet_data, min_col=col_y, min_row=min_row, max_row=max_row)
-    series = Series(y_values, x_values, title_from_data=True)
+    series = Series(y_values, x_values, title_from_data=False)
 
     series.marker.symbol = "circle" 
     series.marker.size = 5
@@ -212,4 +213,35 @@ def data_validation(
 
     worksheet_tdb.add_data_validation(dv)
     dv.add(where_tdb)
+    wb.save(save_as)
+
+
+def bar_chart(
+        wb: Workbook, 
+        worksheet_chart: Worksheet, 
+        worksheet_data: Worksheet, 
+        where: str, 
+        col_x: int, 
+        col_y: int, 
+        min_row: int, 
+        max_row: int, 
+        save_as: str) -> None :
+    
+    
+    c1 = BarChart()
+    c1.type="col"
+    c1.legend = None
+    c1.y_axis.title = 'Nombre de jeux possédés'
+    c1.x_axis.title = 'Jeux'
+    c1.width = 20
+    c1.height = 15
+
+    x_values = Reference(worksheet_data, min_col=col_x, min_row=min_row, max_row=max_row)
+    y_values = Reference(worksheet_data, min_col=col_y, min_row=min_row, max_row=max_row)
+
+    c1.add_data(y_values, titles_from_data=False)
+    c1.set_categories(x_values)
+
+    worksheet_chart.add_chart(c1, where)
+
     wb.save(save_as)

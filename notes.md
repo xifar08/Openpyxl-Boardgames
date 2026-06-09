@@ -11,3 +11,6 @@
 - ~~faire la fonction pour ajouter la fonction FILTER et la data validation~~ 
 - ~~j'ai interverti le nom des axes~~
 - gérer les noms de domaine vide : leur donner une valeur
+- supprimer les wrappers
+- créer la fonction bar chart
+- calculer la longueur pour array formula : avec pandas je peux trouver le nombre de valeurs uniques pour chaque famille et après je peux l'injecter dans array formula

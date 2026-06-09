@@ -67,6 +67,14 @@ def main():
         bar_chart(wb,wb["TDB"],wb["TDB"],where="M10",col_x=32,col_y=33,min_row=1,max_row=10,save_as="output/test/test.xlsx")
         print("Bar plot tracé")
 
+        ws_tdb["B1"]="Nombre de jeux"
+        ws_tdb["B2"]=f'={longueur_max}-COUNTIF(AG:AG,"<>"&NA())'
+        print("KPI nombre de jeux ajouté")
+        ws_tdb["C1"]="Rang BGG médian"
+        ws_tdb["C2"]='=_xlfn.AGGREGATE(12,6,AA:AA)'
+        print("KPI médiane ajouté")
+        wb.save("output/test/test.xlsx")
+
     except Exception as e:
         print(f"Erreur : {type(e).__name__}: {e}")
 

@@ -6,11 +6,12 @@
 - penser à mette le fond en blanc
 - pour la création de feuille, peut être voir pour choisir la position
 - main.py doit être dans le src
-- mettre des __init__.py dans chaque dossier, ça indique à python que le dossier est un package
+- ~~mettre des __init__.py dans chaque dossier, ça indique à python que le dossier est un package~~
 - ~~utiliser la version 3.1.3 d'openpyxl~~
 - ~~faire la fonction pour ajouter la fonction FILTER et la data validation~~ 
 - ~~j'ai interverti le nom des axes~~
 - gérer les noms de domaine vide : leur donner une valeur
 - supprimer les wrappers
 - ~~créer la fonction bar chart~~
-- calculer la longueur pour array formula : avec pandas je peux trouver le nombre de valeurs uniques pour chaque famille et après je peux l'injecter dans array formula
+- ~~calculer la longueur pour array formula : avec pandas je peux trouver le nombre de valeurs uniques pour chaque famille et après je peux l'injecter dans array formula~~
+- faire la fonction radar-chart

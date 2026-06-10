@@ -1,24 +1,26 @@
-from openpyxl_boardgames.utils import get_data, join_df, choose_columns, clean_data, save_data, normalize
+from openpyxl_boardgames.utils import clean_data, normalize
 from openpyxl_boardgames.config import URL1, URL2, URL3, COLUMNS, OBJECT_FLOAT, FILL_NA, NEW_TYPE
-from openpyxl_boardgames.excel import load_wb, create_ws, scatter_chart, bar_chart, data_validation, radar_chart
+from openpyxl_boardgames.excel import create_ws, scatter_chart, bar_chart, data_validation, radar_chart
 from openpyxl.worksheet.formula import ArrayFormula
 import time
+import pandas as pd
+from openpyxl import load_workbook
 
 
 def main():
     try :
         t = time.perf_counter()
 
-        df_main = get_data(URL1, sep=';')
-        df_sec = get_data(URL2, sep=',')
-        df_thr = get_data(URL3, sep=',')
+        df_main = pd.read_csv(URL1, sep=';')
+        df_sec = pd.read_csv(URL2, sep=',')
+        df_thr = pd.read_csv(URL3, sep=',')
         print(f"Données récupérées en {time.perf_counter()-t:.2f}s")
 
-        df_main=join_df(df_left=df_main, df_right=df_sec,key_left='ID',key_right='game_id',how_join='left')
-        df_main=join_df(df_left=df_main, df_right=df_thr,key_left='ID',key_right='id',how_join='left')
+        df_main=df_main.merge(df_sec,how="left",left_on='ID',right_on='game_id')
+        df_main=df_main.merge(df_thr,how="left",left_on='ID',right_on='id')
         print("Jointure effectuée")
 
-        df_main=choose_columns(df_main, COLUMNS)
+        df_main=df_main[COLUMNS]
 
         df_main=clean_data(df_main, OBJECT_FLOAT, FILL_NA, NEW_TYPE)
         print("Données nettoyées")
@@ -33,10 +35,11 @@ def main():
         df_main=normalize(df_main,"Min Age", "Min Age n")
         print("Données normalisées")
 
-        save_data(df_main)
+        pd.DataFrame.to_excel(df_main, excel_writer='template.xlsx', sheet_name='DATA', index=False)
         print("Données exportées au format .xlsx")
 
-        wb=load_wb("template.xlsx")
+
+        wb=load_workbook("template.xlsx")
         print("Workbook chargé")
 
         create_ws(wb,"TDB","output/test/test.xlsx")

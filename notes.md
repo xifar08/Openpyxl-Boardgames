@@ -11,8 +11,8 @@
 - ~~faire la fonction pour ajouter la fonction FILTER et la data validation~~ 
 - ~~j'ai interverti le nom des axes~~
 - gérer les noms de domaine vide : leur donner une valeur
-- supprimer les wrappers
+- ~~supprimer les wrappers~~
 - ~~créer la fonction bar chart~~
 - ~~calculer la longueur pour array formula : avec pandas je peux trouver le nombre de valeurs uniques pour chaque famille et après je peux l'injecter dans array formula~~
-- faire la fonction radar-chart
-- trouver la bonne normalisation pour le radar chart, cad sans valeurs négatives voir ici : https://www.geeksforgeeks.org/python/normalize-a-column-in-pandas/
+- ~~faire la fonction radar-chart~~
+- ~~trouver la bonne normalisation pour le radar chart, cad sans valeurs négatives voir ici : https://www.geeksforgeeks.org/python/normalize-a-column-in-pandas/~~

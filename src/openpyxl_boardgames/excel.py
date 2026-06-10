@@ -1,4 +1,3 @@
-from openpyxl import load_workbook
 from openpyxl import Workbook
 from openpyxl.worksheet.worksheet import Worksheet
 from openpyxl.chart import (
@@ -10,24 +9,11 @@ from openpyxl.chart import (
     #existe bien
     Series
 )
-from openpyxl.worksheet.filters import (
-    FilterColumn,
-    CustomFilter,
-    CustomFilters,
-    DateGroupItem,
-    Filters,
-    )
-
 from openpyxl.worksheet.datavalidation import DataValidation
 from openpyxl.workbook.defined_name import DefinedName
 from openpyxl.utils import get_column_letter
 
 
-
-def load_wb(path: str) -> Workbook:
-    #ajouter la docstring
-    # c'est un wrapper, pas nécessaire
-    return load_workbook(filename = path)
 
 
 def create_ws(wb: Workbook, sheet_name: str, save_as: str):
@@ -147,19 +133,19 @@ def bubble_chart(
     wb.save(save_as)
 
 
-def add_filter(wb: Workbook, worksheet: Worksheet, range: str, save_as: str) -> None:
-    """_summary_
+# def add_filter(wb: Workbook, worksheet: Worksheet, range: str, save_as: str) -> None:
+#     """_summary_
 
-    Args:
-        wb (Workbook): _description_
-        worksheet (Worksheet): _description_
-        range (str): _description_
-        save_as (str): _description_
-    """
-    filters = worksheet.auto_filter
-    # peu importe la ligne de fin mais il faut les bonnes colonnes
-    filters.ref = range
-    wb.save(save_as)
+#     Args:
+#         wb (Workbook): _description_
+#         worksheet (Worksheet): _description_
+#         range (str): _description_
+#         save_as (str): _description_
+#     """
+#     filters = worksheet.auto_filter
+#     # peu importe la ligne de fin mais il faut les bonnes colonnes
+#     filters.ref = range
+#     wb.save(save_as)
 
 
 def data_validation(

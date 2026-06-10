@@ -6,6 +6,7 @@ from openpyxl.chart import (
     BubbleChart,
     Reference,
     BarChart,
+    RadarChart,
     #existe bien
     Series
 )
@@ -240,6 +241,32 @@ def bar_chart(
 
     c1.add_data(y_values, titles_from_data=False)
     c1.set_categories(x_values)
+
+    worksheet_chart.add_chart(c1, where)
+
+    wb.save(save_as)
+
+
+def radar_chart(
+        wb: Workbook, 
+        worksheet_chart: Worksheet, 
+        worksheet_data: Worksheet, 
+        where: str, 
+        min_row: int,
+        max_row: int, 
+        min_col: int, 
+        save_as: str
+        ) -> None :
+    
+    c1=RadarChart()
+    labels=Reference(worksheet_data, min_col=min_col,min_row=min_row,max_row=max_row)
+    y_values=Reference(worksheet_data, min_col=min_col+1,min_row=min_row,max_row=max_row)
+    c1.add_data(y_values, titles_from_data=False)
+    c1.set_categories(labels)
+    c1.y_axis.delete=True
+    c1.legend = None
+    c1.width = 20
+    c1.height = 15
 
     worksheet_chart.add_chart(c1, where)
 

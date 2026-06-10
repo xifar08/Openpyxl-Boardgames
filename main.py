@@ -1,6 +1,6 @@
 from openpyxl_boardgames.utils import get_data, join_df, choose_columns, clean_data, save_data, normalize
 from openpyxl_boardgames.config import URL1, URL2, URL3, COLUMNS, OBJECT_FLOAT, FILL_NA, NEW_TYPE
-from openpyxl_boardgames.excel import load_wb, create_ws, scatter_chart, copy_columns, bar_chart, data_validation
+from openpyxl_boardgames.excel import load_wb, create_ws, scatter_chart, bar_chart, data_validation, radar_chart
 from openpyxl.worksheet.formula import ArrayFormula
 import time
 
@@ -68,18 +68,21 @@ def main():
         print("KPI médiane ajouté")
 
         ws_tdb["A4"]="Note moyenne normalisée"
-        ws_tdb["A5"]='=_xlfn.AGGREGATE(1,6,BA:BA)'
-        ws_tdb["B4"]="Complexité moyenne normalisée"
+        ws_tdb["B4"]='=_xlfn.AGGREGATE(1,6,BA:BA)'
+        ws_tdb["A5"]="Complexité moyenne normalisée"
         ws_tdb["B5"]='=_xlfn.AGGREGATE(1,6,BB:BB)'
-        ws_tdb["C4"]="Nombre moyen minimal de joueurs normalisé"
-        ws_tdb["C5"]='=_xlfn.AGGREGATE(1,6,BE:BE)'
-        ws_tdb["D4"]="Nombre moyen maximal de joueurs normalisé"
-        ws_tdb["D5"]='=_xlfn.AGGREGATE(1,6,BF:BF)'
-        ws_tdb["E4"]="Temps de partie moyen normalisé"
-        ws_tdb["E5"]='=_xlfn.AGGREGATE(1,6,BG:BG)'
-        ws_tdb["F4"]="Age minimal moyen normalisé"
-        ws_tdb["F5"]='=_xlfn.AGGREGATE(1,6,BH:BH)'
-        wb.save("output/test/feat-5.xlsx")
+        ws_tdb["A6"]="Nombre moyen minimal de joueurs normalisé"
+        ws_tdb["B6"]='=_xlfn.AGGREGATE(1,6,BE:BE)'
+        ws_tdb["A7"]="Nombre moyen maximal de joueurs normalisé"
+        ws_tdb["B7"]='=_xlfn.AGGREGATE(1,6,BF:BF)'
+        ws_tdb["A8"]="Temps de partie moyen normalisé"
+        ws_tdb["B8"]='=_xlfn.AGGREGATE(1,6,BG:BG)'
+        ws_tdb["A9"]="Age minimal moyen normalisé"
+        ws_tdb["B9"]='=_xlfn.AGGREGATE(1,6,BH:BH)'
+        wb.save("output/test/test.xlsx")
+
+        radar_chart(wb,wb["TDB"],wb["TDB"],where="A41",min_row=4,max_row=9,min_col=1,save_as="output/test/test.xlsx")
+        print("Radar chart tracé")
 
     except Exception as e:
         print(f"Erreur : {type(e).__name__}: {e}")

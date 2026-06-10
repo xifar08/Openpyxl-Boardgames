@@ -78,5 +78,15 @@ def save_data(df: pd.DataFrame) -> None:
 
 
 def normalize(df: pd.DataFrame, column: str, new_column: str):
+    """Normaliser les données d'une colonne
+
+    Args:
+        df (pd.DataFrame): df propre
+        column (str): colonne à normaliser
+        new_column (str): nouvelle colonne
+
+    Returns:
+        _type_: df propre
+    """
     df[new_column] = (df[column] - df[column].mean()) / (df[column].std())
     return df

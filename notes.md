@@ -15,3 +15,4 @@
 - ~~créer la fonction bar chart~~
 - ~~calculer la longueur pour array formula : avec pandas je peux trouver le nombre de valeurs uniques pour chaque famille et après je peux l'injecter dans array formula~~
 - faire la fonction radar-chart
+- trouver la bonne normalisation pour le radar chart, cad sans valeurs négatives voir ici : https://www.geeksforgeeks.org/python/normalize-a-column-in-pandas/

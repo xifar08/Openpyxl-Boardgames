@@ -205,8 +205,8 @@ def main():
         ws_tab["Q2"]=ArrayFormula("Q2:Q3030","=_xlfn.XLOOKUP(A2:A3030,TDB!AB:AB,TDB!BH:BH)")
         print("Feuille TABLEAU ajoutée")
 
-        # filters = ws_tab.auto_filter
-        # filters.ref = range
+        filters = ws_tab.auto_filter
+        filters.ref = "A:Q"
 
         # ws_tdb["W1"]="Indicateurs"
         ws_tdb["X1"]="Profil de la famille"

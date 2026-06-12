@@ -15,14 +15,6 @@ from openpyxl.utils import get_column_letter
 
 
 
-
-def create_ws(wb: Workbook, sheet_name: str, save_as: str):
-    # ajouter la docstring
-    # c'est un wrapper, pas nécessaire
-    ws = wb.create_sheet(sheet_name, 0)
-    wb.save(save_as)
-
-
 def copy_columns(
         wb: Workbook, 
         ws_data: Worksheet, 
@@ -247,12 +239,12 @@ def radar_chart(
     
     c1=RadarChart()
     c1.title = "Carte d'identité de la famille de jeux"
-    labels=Reference(worksheet_data, min_col=min_col,min_row=min_row,max_row=max_row)
-    y_values=Reference(worksheet_data, min_col=min_col+1,min_row=min_row,max_row=max_row)
-    c1.add_data(y_values, titles_from_data=False)
+    labels=Reference(worksheet_data, min_col=min_col,min_row=min_row+1,max_row=max_row)
+    y_values=Reference(worksheet_data, min_col=min_col+1,max_col=min_col+2,min_row=min_row,max_row=max_row)
+    c1.add_data(y_values, titles_from_data=True)
     c1.set_categories(labels)
     c1.y_axis.delete=True
-    c1.legend = None
+    # c1.legend = None
     # c1.width = 20
     c1.height = 12
 

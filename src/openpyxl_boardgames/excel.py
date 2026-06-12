@@ -65,20 +65,20 @@ def scatter_chart(
     
     
     c1 = ScatterChart()
-    # c1.title = "Complexité vs Note utilisateur"
+    c1.title = "Complexité vs Note utilisateur"
     #c1.style = 5
     c1.legend = None
     c1.y_axis.title = 'Note utilisateur'
     c1.x_axis.title = 'Complexité'
-    c1.width = 20
-    c1.height = 15
+    # c1.width = 20
+    c1.height = 12
 
     x_values = Reference(worksheet_data, min_col=col_x, min_row=min_row, max_row=max_row)
     y_values = Reference(worksheet_data, min_col=col_y, min_row=min_row, max_row=max_row)
     series = Series(y_values, x_values, title_from_data=False)
 
     series.marker.symbol = "circle" 
-    series.marker.size = 5
+    series.marker.size = 3
     series.graphicalProperties.line.noFill = True
     
     c1.series.append(series)
@@ -114,13 +114,13 @@ def bubble_chart(
         save_as (str): _description_
     """
     c1 = BubbleChart()
-    # c1.title = "Complexité vs Note utilisateur"
+    c1.title = "Complexité vs Note utilisateur"
     c1.style = 1
     c1.legend = None
     c1.y_axis.title = 'Note utilisateur'
     c1.x_axis.title = 'Complexité'
-    c1.width = 20
-    c1.height = 15
+    # c1.width = 20
+    # c1.height = 15
 
     x_values = Reference(worksheet_data, min_col=col_x, min_row=min_row, max_row=max_row)
     y_values = Reference(worksheet_data, min_col=col_y, min_row=min_row, max_row=max_row)
@@ -215,12 +215,13 @@ def bar_chart(
     
     
     c1 = BarChart()
+    c1.title="Top 10 BGG : Nombre d'unités de jeux possédées"
     c1.type="col"
     c1.legend = None
-    c1.y_axis.title = 'Nombre de jeux possédés'
+    c1.y_axis.title = "Nombre d'unités jeux possédés"
     c1.x_axis.title = 'Jeux'
-    c1.width = 20
-    c1.height = 15
+    # c1.width = 20
+    c1.height = 12
 
     x_values = Reference(worksheet_data, min_col=col_x, min_row=min_row, max_row=max_row)
     y_values = Reference(worksheet_data, min_col=col_y, min_row=min_row, max_row=max_row)
@@ -245,14 +246,15 @@ def radar_chart(
         ) -> None :
     
     c1=RadarChart()
+    c1.title = "Carte d'identité de la famille de jeux"
     labels=Reference(worksheet_data, min_col=min_col,min_row=min_row,max_row=max_row)
     y_values=Reference(worksheet_data, min_col=min_col+1,min_row=min_row,max_row=max_row)
     c1.add_data(y_values, titles_from_data=False)
     c1.set_categories(labels)
     c1.y_axis.delete=True
     c1.legend = None
-    c1.width = 20
-    c1.height = 15
+    # c1.width = 20
+    c1.height = 12
 
     worksheet_chart.add_chart(c1, where)
 

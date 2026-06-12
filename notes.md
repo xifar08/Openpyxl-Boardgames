@@ -16,3 +16,6 @@
 - ~~calculer la longueur pour array formula : avec pandas je peux trouver le nombre de valeurs uniques pour chaque famille et après je peux l'injecter dans array formula~~
 - ~~faire la fonction radar-chart~~
 - ~~trouver la bonne normalisation pour le radar chart, cad sans valeurs négatives voir ici : https://www.geeksforgeeks.org/python/normalize-a-column-in-pandas/~~
+- cacher les colonnes de données
+- faire feuille à part avec un tableau qui reprend les données filtrées avec les fonction unique et rechercheX
+- j'aimerais bien ajouter le profil d'un jeu dans le radar chart

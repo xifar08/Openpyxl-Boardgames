@@ -10,48 +10,15 @@ from openpyxl.chart import (
     Series
 )
 
-
-
-
-def copy_columns(
-        wb: Workbook, 
-        ws_data: Worksheet, 
-        ws_destination: Worksheet, 
-        col_data: int, 
-        col_destination: int, 
-        min_row: int, 
-        save_as: str) -> None :
-    """_summary_
-
-    Args:
-        wb (Workbook): _description_
-        ws_data (Worksheet): _description_
-        ws_destination (Worksheet): _description_
-        col_data (int): _description_
-        col_destination (int): _description_
-        min_row (int): _description_
-        save_as (str): _description_
-    """
-    row_line = min_row
-    for row in ws_data.iter_rows(min_row=min_row, max_row=ws_data.max_row):
-        val=row[col_data-1].value
-        #pas une vraie erreur ci-dessous
-        ws_destination.cell(row=row_line, column=col_destination).value=val
-        row_line+=1
-    wb.save(save_as)
-
-
-
-def scatter_chart(
-        wb: Workbook, 
+def scatter_chart( 
         worksheet_chart: Worksheet, 
         worksheet_data: Worksheet, 
         where: str, 
         col_x: int, 
         col_y: int, 
         min_row: int, 
-        max_row: int, 
-        save_as: str) -> None :
+        max_row: int
+        ) -> None :
     
     
     c1 = ScatterChart()
@@ -75,11 +42,8 @@ def scatter_chart(
 
     worksheet_chart.add_chart(c1, where)
 
-    wb.save(save_as)
-
 
 def bubble_chart(
-        wb: Workbook, 
         worksheet_chart: Worksheet, 
         worksheet_data: Worksheet, 
         where: str, 
@@ -87,8 +51,8 @@ def bubble_chart(
         col_y: int,
         col_size: int, 
         min_row: int, 
-        max_row: int, 
-        save_as: str) -> None :
+        max_row: int
+        ) -> None :
     """_summary_
 
     Args:
@@ -120,8 +84,6 @@ def bubble_chart(
 
     worksheet_chart.add_chart(c1, where)
 
-    wb.save(save_as)
-
 
 # def add_filter(wb: Workbook, worksheet: Worksheet, range: str, save_as: str) -> None:
 #     """_summary_
@@ -139,18 +101,26 @@ def bubble_chart(
 
 
 
-
-def bar_chart(
-        wb: Workbook, 
+def bar_chart( 
         worksheet_chart: Worksheet, 
         worksheet_data: Worksheet, 
         where: str, 
         col_x: int, 
         col_y: int, 
         min_row: int, 
-        max_row: int, 
-        save_as: str) -> None :
-    
+        max_row: int
+        ) -> None :
+    """_summary_
+
+    Args:
+        worksheet_chart (Worksheet): _description_
+        worksheet_data (Worksheet): _description_
+        where (str): _description_
+        col_x (int): _description_
+        col_y (int): _description_
+        min_row (int): _description_
+        max_row (int): _description_
+    """
     
     c1 = BarChart()
     c1.title="Top 10 BGG : Nombre d'unités de jeux possédées"
@@ -169,20 +139,25 @@ def bar_chart(
 
     worksheet_chart.add_chart(c1, where)
 
-    wb.save(save_as)
 
-
-def radar_chart(
-        wb: Workbook, 
+def radar_chart( 
         worksheet_chart: Worksheet, 
         worksheet_data: Worksheet, 
         where: str, 
         min_row: int,
         max_row: int, 
-        min_col: int, 
-        save_as: str
+        min_col: int 
         ) -> None :
-    
+    """_summary_
+
+    Args:
+        worksheet_chart (Worksheet): _description_
+        worksheet_data (Worksheet): _description_
+        where (str): _description_
+        min_row (int): _description_
+        max_row (int): _description_
+        min_col (int): _description_
+    """
     c1=RadarChart()
     c1.title = "Carte d'identité de la famille de jeux"
     labels=Reference(worksheet_data, min_col=min_col,min_row=min_row+1,max_row=max_row)
@@ -195,5 +170,3 @@ def radar_chart(
     c1.height = 12
 
     worksheet_chart.add_chart(c1, where)
-
-    wb.save(save_as)

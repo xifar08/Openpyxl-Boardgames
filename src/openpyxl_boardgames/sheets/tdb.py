@@ -12,10 +12,10 @@ from openpyxl_boardgames.config import (
     KPI_FORMULA,
     KPI_CELLS_TDB,
     KPI_MERGE_TDB,
-    FORMULA_FILTER,
-    MAX_ROW
+    FORMULA_FILTER
     )
 from openpyxl_boardgames.components.data_validation import data_validation
+from openpyxl_boardgames.components.charts import bar_chart, scatter_chart, radar_chart
 
 
 def build_tdb_sheet(wb: Workbook) -> None:
@@ -35,7 +35,14 @@ def build_tdb_sheet(wb: Workbook) -> None:
 
     data_validation(ws=ws_tdb, worksheet_data=wb[SHEET_DATA],where="B8",col_data=14, col_ws=26)
 
-    ws_tdb["AA1"] = ArrayFormula(f"AA1:BH{MAX_ROW}", FORMULA_FILTER)
+    ws_tdb["AA1"] = ArrayFormula("AA1", FORMULA_FILTER)
+
+    scatter_chart(ws_tdb,ws_tdb,where="A12",col_x=37,col_y=35,min_row=1,max_row=1000)
+
+    bar_chart(ws_tdb,ws_tdb,where="J12",col_x=28,col_y=38,min_row=1,max_row=10)
+
+    radar_chart(ws_tdb,ws_tdb,where="A37",min_row=1,max_row=7,min_col=23)
+
 
 
 def add_titles(ws: Worksheet)-> None:
@@ -75,13 +82,12 @@ def add_kpis(ws: Worksheet)-> None:
     ws.merge_cells(range_string="B8:C9")
     ws["B8"].font = Font(
         name='Calibri',
-        size=14,
+        size=9,
         color='00FF9900',
         bold=True
     )
     ws["B8"].alignment = Alignment(horizontal='center', vertical='center',wrapText=True)
 
-    # ws["B8"].height=70
 
     for formula, col, merge in zip(KPI_FORMULA, KPI_CELLS_TDB, KPI_MERGE_TDB):
         ws[col]=formula

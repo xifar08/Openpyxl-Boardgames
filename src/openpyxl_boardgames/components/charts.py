@@ -85,22 +85,6 @@ def bubble_chart(
     worksheet_chart.add_chart(c1, where)
 
 
-# def add_filter(wb: Workbook, worksheet: Worksheet, range: str, save_as: str) -> None:
-#     """_summary_
-
-#     Args:
-#         wb (Workbook): _description_
-#         worksheet (Worksheet): _description_
-#         range (str): _description_
-#         save_as (str): _description_
-#     """
-#     filters = worksheet.auto_filter
-#     # peu importe la ligne de fin mais il faut les bonnes colonnes
-#     filters.ref = range
-#     wb.save(save_as)
-
-
-
 def bar_chart( 
         worksheet_chart: Worksheet, 
         worksheet_data: Worksheet, 
@@ -164,7 +148,7 @@ def radar_chart(
     y_values=Reference(worksheet_data, min_col=min_col+1,max_col=min_col+2,min_row=min_row,max_row=max_row)
     c1.add_data(y_values, titles_from_data=True)
     c1.set_categories(labels)
-    c1.y_axis.delete=True
+    # c1.y_axis.delete=True
     # c1.legend = None
     # c1.width = 20
     c1.height = 12

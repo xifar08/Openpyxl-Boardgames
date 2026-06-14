@@ -77,16 +77,17 @@ NEW_TYPE = {
         'Owned Users':'int64'
     }
 
-HIDDEN = [
-    'X', 'Y', 'Z', 'AA', 'AB', 'AC', 'AD', 'AE', 'AF', 'AG', 'AH', 'AI', 'AJ', 
-    'AK', 'AL', 'AM', 'AN', 'AO', 'AP', 'AQ', 'AR', 'AS', 'AT', 'AU', 'AV', 'AW', 
-    'AX', 'AY', 'AZ', 'BA', 'BB', 'BC', 'BD', 'BE', 'BF', 'BG', 'BH'
-]
+# HIDDEN = [
+#     'X', 'Y', 'Z', 'AA', 'AB', 'AC', 'AD', 'AE', 'AF', 'AG', 'AH', 'AI', 'AJ', 
+#     'AK', 'AL', 'AM', 'AN', 'AO', 'AP', 'AQ', 'AR', 'AS', 'AT', 'AU', 'AV', 'AW', 
+#     'AX', 'AY', 'AZ', 'BA', 'BB', 'BC', 'BD', 'BE', 'BF', 'BG', 'BH'
+# ]
 
 PATH_TEMPLATE = "output/template.xlsx"
 
 SHEET_DATA = "DATA"
 SHEET_TDB = "TDB"
+SHEET_TABLEAU = "TABLEAU"
 
 TITLE_TDB = [
     "Filtre famille",
@@ -100,7 +101,7 @@ TITLE_CELLS_TDB = ["B5","E5","H5","K5","N5"]
 
 TITLE_MERGE_TDB= ["B5:C7","E5:F7","H5:I7","K5:L7","N5:O7"]
 
-KPI_FORMULA = [
+KPI_FORMULA_TDB = [
     '=COUNT(AG:AG)',
     "=E8/23327",
     "=_xlfn.AGGREGATE(12,6,AJ:AJ)",
@@ -112,3 +113,111 @@ KPI_CELLS_TDB = ["E8","H8","K8","N8"]
 KPI_MERGE_TDB = ["E8:F9","H8:I9","K8:L9","N8:O9"]
 
 FORMULA_FILTER = '=_xlfn.FILTER(DATA!A2:AH20328,DATA!N2:N20328=TDB!B8,'')'
+
+TITLE_TABLEAU = [
+    "Jeu",
+    "Année de publication",
+    "Famille",
+    "Rang BGG",
+    "Complexité",
+    "Min joueur",
+    "Max joueur",
+    "Temps de jeu",
+    "Game designer",
+    "Artiste",
+    "Editeur",
+    "Note normalisée",
+    "Complexité normalisée",
+    "Min joueur normalisé",
+    "Max joueur normalisé",
+    "Temps de partie normalisé",
+    "Age min normalisé"
+]
+TITLE_CELLS_TABLEAU =[
+    "A1", "B1", "C1", "D1", "E1", "F1", "G1", 
+    "H1", "I1", "J1", "K1", "L1", "M1", "N1", 
+    "O1", "P1", "Q1"
+]
+
+KPI_FORMULA_TABLEAU =[
+    "=_xlfn.UNIQUE(TDB!AB:AB)",
+    "=_xlfn.XLOOKUP(A2:A10143,TDB!AB:AB,TDB!AC:AC)",
+    "=_xlfn.XLOOKUP(A2:A10143,TDB!AB:AB,TDB!AN:AN)",
+    "=_xlfn.XLOOKUP(A2:A10143,TDB!AB:AB,TDB!AJ:AJ)",
+    "=_xlfn.XLOOKUP(A2:A10143,TDB!AB:AB,TDB!AK:AK)",
+    "=_xlfn.XLOOKUP(A2:A10143,TDB!AB:AB,TDB!AD:AD)",
+    "=_xlfn.XLOOKUP(A2:A10143,TDB!AB:AB,TDB!AE:AE)",
+    "=_xlfn.XLOOKUP(A2:A10143,TDB!AB:AB,TDB!AF:AF)",
+    "=_xlfn.XLOOKUP(A2:A10143,TDB!AB:AB,TDB!AP:AP)",
+    "=_xlfn.XLOOKUP(A2:A10143,TDB!AB:AB,TDB!AO:AO)",
+    "=_xlfn.XLOOKUP(A2:A10143,TDB!AB:AB,TDB!AQ:AQ)",
+    "=_xlfn.XLOOKUP(A2:A10143,TDB!AB:AB,TDB!BA:BA)",
+    "=_xlfn.XLOOKUP(A2:A10143,TDB!AB:AB,TDB!BB:BB)",
+    "=_xlfn.XLOOKUP(A2:A10143,TDB!AB:AB,TDB!BE:BE)",
+    "=_xlfn.XLOOKUP(A2:A10143,TDB!AB:AB,TDB!BF:BF)",
+    "=_xlfn.XLOOKUP(A2:A10143,TDB!AB:AB,TDB!BG:BG)",
+    "=_xlfn.XLOOKUP(A2:A10143,TDB!AB:AB,TDB!BH:BH)"
+]
+
+KPI_FORMULA_RANGE =[
+    "A2:A10143",
+     "B2:B10143",
+     "C2:C10143",
+     "D2:D10143",
+     "E2:E10143",
+     "F2:F10143",
+     "G2:G10143",
+     "H2:H10143",
+     "I2:I10143",
+     "J2:J10143",
+     "K2:K10143",
+     "L2:L10143",
+     "M2:M10143",
+     "N2:N10143",
+     "O2:O10143",
+     "P2:P10143",
+     "Q2:Q10143",
+]
+
+KPI_CELLS_TABLEAU =[
+    "A2", "B2", "C2", "D2", "E2", "F2", "G2", 
+    "H2", "I2", "J2", "K2", "L2", "M2", "N2", 
+    "O2", "P2", "Q2"
+]
+
+RADCHART_CELLS = [
+    # "W2", "X2", "Y2",
+    # "W3", "X3", "Y3"
+    # "W4", "X4", "Y4",
+    # "W5", "X5", "Y5",
+    # "W6", "X6", "Y6"
+    # "W7", "X7", "Y7"
+    "2","3","4","5","6","7"
+]
+
+RADCHART_TITLES = [
+    "Note moyenne normalisée",
+    "Complexité moyenne normalisée",
+    "Nombre moyen minimal de joueurs normalisé",
+    "Nombre moyen maximal de joueurs normalisé",
+    "Temps de partie moyen normalisé",
+    "Age minimal moyen normalisé"
+]
+
+RADCHART_FORMULA1=[
+    '=_xlfn.AGGREGATE(1,6,BA:BA)',
+    '=_xlfn.AGGREGATE(1,6,BB:BB)',
+    '=_xlfn.AGGREGATE(1,6,BE:BE)',
+    '=_xlfn.AGGREGATE(1,6,BF:BF)',
+    '=_xlfn.AGGREGATE(1,6,BG:BG)',
+    '=_xlfn.AGGREGATE(1,6,BH:BH)'
+]
+
+RADCHART_FORMULA2=[
+    '=TABLEAU!L2',
+    '=TABLEAU!M2',
+    '=TABLEAU!N2',
+    '=TABLEAU!O2',
+    '=TABLEAU!P2',
+    '=TABLEAU!Q2'
+]

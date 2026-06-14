@@ -14,31 +14,6 @@ import pandas as pd
 
 def main():
     try :
-        # t = time.perf_counter()
-
-        # df_main = pd.read_csv(URL1, sep=';')
-        # df_sec = pd.read_csv(URL2, sep=',')
-        # df_thr = pd.read_csv(URL3, sep=',')
-        # print(f"Données récupérées en {time.perf_counter()-t:.2f}s")
-
-        # df_main=df_main.merge(df_sec,how="left",left_on='ID',right_on='game_id')
-        # df_main=df_main.merge(df_thr,how="left",left_on='ID',right_on='id')
-        # print("Jointure effectuée")
-
-        # df_main=df_main[COLUMNS]
-
-        # df_main=clean_data(df_main, OBJECT_FLOAT, FILL_NA, NEW_TYPE)
-        # print("Données nettoyées")
-
-        # df_main=normalize(df_main,"Rating Average","Rating Average n")
-        # df_main=normalize(df_main,"Complexity Average","Complexity Average n")
-        # df_main=normalize(df_main,"Users Rated", "Users Rated n")
-        # df_main=normalize(df_main,"Owned Users", "Owned Users n")
-        # df_main=normalize(df_main,"Min Players", "Min Players n")
-        # df_main=normalize(df_main,"Max Players", "Max Players n")
-        # df_main=normalize(df_main,"Play Time", "Play Time n")
-        # df_main=normalize(df_main,"Min Age", "Min Age n")
-        # print("Données normalisées")
 
         df_raw=load_data()
 
@@ -47,8 +22,7 @@ def main():
         pd.DataFrame.to_excel(df_main, excel_writer=PATH_TEMPLATE, sheet_name='DATA', index=False)
         print("Données exportées au format .xlsx")
 
-
-        # wb=load_workbook("template.xlsx")
+        wb=load_workbook(PATH_TEMPLATE)
         # print("Workbook chargé")
         # wb.create_sheet("TDB", 0)
         # print("Feuille TDB créée")

@@ -5,7 +5,7 @@
 - trouver les plus beaux styles de graph (1 à 48, styles d'excel)
 - ~~penser à mette le fond en blanc~~
 - ~~pour la création de feuille, peut être voir pour choisir la position~~
-- main.py doit être dans le src
+- ~~main.py doit être dans le src~~
 - ~~mettre des __init__.py dans chaque dossier, ça indique à python que le dossier est un package~~
 - ~~utiliser la version 3.1.3 d'openpyxl~~
 - ~~faire la fonction pour ajouter la fonction FILTER et la data validation~~ 
@@ -19,3 +19,4 @@
 - ~~cacher les colonnes de données~~
 - ~~faire feuille à part avec un tableau qui reprend les données filtrées avec les fonction unique et rechercheX~~
 - ~~j'aimerais bien ajouter le profil d'un jeu dans le radar chart~~
+- refacto tout le projet

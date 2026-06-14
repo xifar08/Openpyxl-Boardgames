@@ -57,7 +57,8 @@ FILL_NA = {'is_expansion':0,
         'strategygames_rank':0,
         'thematic_rank':0,
         'wargames_rank':0,
-        'Owned Users':0}
+        'Owned Users':0,
+        'Domains': 'Without domain'}
 
 NEW_TYPE = {
         'ID':'int64',
@@ -99,4 +100,17 @@ TITLE_CELLS_TDB = ["B5","E5","H5","K5","N5"]
 
 TITLE_MERGE_TDB= ["B5:C7","E5:F7","H5:I7","K5:L7","N5:O7"]
 
-KPI_MERGE_TDB = ["B8:C9","E8:F9","H8:I9","K8:L9","N8:O9"]
+KPI_FORMULA = [
+    '=10143-COUNTIF(AG:AG,"<>"&NA())',
+    "=E8/23327",
+    "=_xlfn.AGGREGATE(12,6,AJ:AJ)",
+    "=_xlfn.AGGREGATE(1,6,AC:AC)"
+]
+
+KPI_CELLS_TDB = ["E8","H8","K8","N8"]
+
+KPI_MERGE_TDB = ["E8:F9","H8:I9","K8:L9","N8:O9"]
+
+FORMULA_FILTER = '=_xlfn.FILTER(DATA!A:AH,DATA!N:N=TDB!B8,"")'
+
+MAX_ROW='10143'

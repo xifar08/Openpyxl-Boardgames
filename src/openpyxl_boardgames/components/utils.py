@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-def clean_data(df: pd.DataFrame, object_float: list, fillna: dict, type_dict: dict ) -> pd.DataFrame:
+def _clean_data(df: pd.DataFrame, object_float: list, fillna: dict, type_dict: dict ) -> pd.DataFrame:
     """Nettoyage du df en supprimant les IDs nuls et en changeant les types des colonnes
 
     Args:

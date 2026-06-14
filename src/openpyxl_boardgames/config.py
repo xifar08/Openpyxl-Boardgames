@@ -83,3 +83,20 @@ HIDDEN = [
 ]
 
 PATH_TEMPLATE = "output/template.xlsx"
+
+SHEET_DATA = "DATA"
+SHEET_TDB = "TDB"
+
+TITLE_TDB = [
+    "Filtre famille",
+    "Nombre de jeux",
+    "Proportion",
+    "Rang BGG médian",
+    "Année moyenne de parution",
+]
+
+TITLE_CELLS_TDB = ["B5","E5","H5","K5","N5"]
+
+TITLE_MERGE_TDB= ["B5:C7","E5:F7","H5:I7","K5:L7","N5:O7"]
+
+KPI_MERGE_TDB = ["B8:C9","E8:F9","H8:I9","K8:L9","N8:O9"]

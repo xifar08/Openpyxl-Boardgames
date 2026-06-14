@@ -1,14 +1,14 @@
+from openpyxl import load_workbook
+from openpyxl_boardgames.data import load_data, clean_data
+from openpyxl_boardgames.sheets.tdb import build_tdb_sheet
+from openpyxl_boardgames.config import PATH_TEMPLATE, SHEET_DATA
+import pandas as pd
 # from openpyxl_boardgames.utils import _clean_data, normalize
 # from openpyxl_boardgames.config import URL1, URL2, URL3, COLUMNS, OBJECT_FLOAT, FILL_NA, NEW_TYPE, HIDDEN
-from openpyxl_boardgames.data import load_data, clean_data
-from openpyxl_boardgames.config import PATH_TEMPLATE
-from openpyxl_boardgames.excel import scatter_chart, bar_chart, data_validation, radar_chart
-from openpyxl.worksheet.formula import ArrayFormula
-from openpyxl.styles import Alignment
-from openpyxl.styles import Font
-from openpyxl import load_workbook
+# from openpyxl_boardgames.excel import scatter_chart, bar_chart, data_validation, radar_chart
+# from openpyxl.worksheet.formula import ArrayFormula
 # import time
-import pandas as pd
+
 
 
 
@@ -19,10 +19,14 @@ def main():
 
         df_main=clean_data(df_raw)
 
-        pd.DataFrame.to_excel(df_main, excel_writer=PATH_TEMPLATE, sheet_name='DATA', index=False)
+        pd.DataFrame.to_excel(df_main, excel_writer=PATH_TEMPLATE, sheet_name=SHEET_DATA, index=False)
         print("Données exportées au format .xlsx")
 
         wb=load_workbook(PATH_TEMPLATE)
+
+        build_tdb_sheet(wb=wb)
+
+        wb.save("output/test/refacto.xlsx")
         # print("Workbook chargé")
         # wb.create_sheet("TDB", 0)
         # print("Feuille TDB créée")
@@ -222,7 +226,7 @@ def main():
         #     ws_tdb.column_dimensions[col].hidden = True
         # print("Colonnes masquées")
 
-        # wb.save("output/test/test.xlsx")
+        
 
     except Exception as e:
         print(f"Erreur : {type(e).__name__}: {e}")

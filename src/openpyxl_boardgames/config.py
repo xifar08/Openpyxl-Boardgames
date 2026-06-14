@@ -35,6 +35,17 @@ COLUMNS = [
     "wargames_rank",
 ]
 
+COLUMNS_TO_NORMALIZE = [
+    "Rating Average", 
+    "Complexity Average", 
+    "Users Rated", 
+    "Owned Users",
+    "Min Players", 
+    "Max Players", 
+    "Play Time", 
+    "Min Age"
+]
+
 OBJECT_FLOAT = ['Complexity Average','Rating Average']
 
 FILL_NA = {'is_expansion':0,
@@ -70,3 +81,5 @@ HIDDEN = [
     'AK', 'AL', 'AM', 'AN', 'AO', 'AP', 'AQ', 'AR', 'AS', 'AT', 'AU', 'AV', 'AW', 
     'AX', 'AY', 'AZ', 'BA', 'BB', 'BC', 'BD', 'BE', 'BF', 'BG', 'BH'
 ]
+
+PATH_TEMPLATE = "output/template.xlsx"

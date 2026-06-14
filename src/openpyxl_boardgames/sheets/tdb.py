@@ -1,8 +1,5 @@
-from openpyxl import Workbook
-from openpyxl.worksheet.worksheet import Worksheet
-from openpyxl.styles import Font
-from openpyxl.styles import Alignment
-from openpyxl.worksheet.formula import ArrayFormula
+"""Construction de la feuille TDB : ajout des titres et des formules"""
+
 from openpyxl_boardgames.config import (
     SHEET_TDB,
     SHEET_DATA,
@@ -21,12 +18,21 @@ from openpyxl_boardgames.config import (
 from openpyxl_boardgames.components.data_validation import data_validation
 from openpyxl_boardgames.components.charts import bar_chart, scatter_chart, radar_chart
 
+from openpyxl import Workbook
+from openpyxl.worksheet.worksheet import Worksheet
+from openpyxl.styles import Font
+from openpyxl.styles import Alignment
+from openpyxl.worksheet.formula import ArrayFormula
+
 
 def build_tdb_sheet(wb: Workbook) -> None:
-    """_summary_
+    """Orchéstrtaionde la contruction de l'onglet TABLEAU
+    Création de la feuille dans le workbook, fond blanc, ajout des titres des colonnes,
+    des kpis, des formules pour le radar chart, de la validation de données, du filtre et du bar chart,
+    du scatter chart et du radar chart
 
     Args:
-        wb (Workbook): _description_
+        wb (Workbook): Workbook sans feuille TDB
     """
 
     ws_tdb=wb.create_sheet(SHEET_TDB,0)
@@ -51,12 +57,11 @@ def build_tdb_sheet(wb: Workbook) -> None:
     radar_chart(ws_tdb,ws_tdb,where="F37",min_row=1,max_row=7,min_col=23)
 
 
-
 def add_titles(ws: Worksheet)-> None:
-    """_summary_
+    """Ajout des titres de la feuille et des KPIs
 
     Args:
-        ws (Worksheet): _description_
+        ws (Worksheet): Worksheet TDB
     """
     ws["A1"]="Pour faire fonctionner le TdB, veuillez double cliquer en AA1 et appuyer sur entrer avant de choisir un filtre."
     ws.merge_cells(range_string="A1:C4")
@@ -84,10 +89,10 @@ def add_titles(ws: Worksheet)-> None:
 
 
 def add_kpis(ws: Worksheet)-> None:
-    """_summary_
+    """Ajout des formules pour le calcul des KPIs et mise en forme des cellules.
 
     Args:
-        ws (Worksheet): _description_
+        ws (Worksheet): Worksheet TDB
     """
     ws.merge_cells(range_string="B8:C9")
     ws["B8"].font = Font(
@@ -112,11 +117,12 @@ def add_kpis(ws: Worksheet)-> None:
     ws["H8"].number_format = '0.0%'
     ws["N8"].number_format = '0'
 
+
 def add_radchart_data(ws: Worksheet)-> None:
-    """_summary_
+    """Ajout du radar chart.
 
     Args:
-        ws (Worksheet): _description_
+        ws (Worksheet): Worksheet TDB
     """
     ws["X1"]="Profil de la famille"
     ws["Y1"]="Profil du jeu le mieux classé de la famille"
@@ -125,27 +131,3 @@ def add_radchart_data(ws: Worksheet)-> None:
         ws["W"+row]=title
         ws["X"+row]=formula1
         ws["Y"+row]=formula2
-
-
-
-
-
-# ws_tdb["W2"]="Note moyenne normalisée"
-# ws_tdb["X2"]='=_xlfn.AGGREGATE(1,6,BA:BA)'
-# ws_tdb["Y2"]='=TABLEAU!L2'
-# ws_tdb["W3"]="Complexité moyenne normalisée"
-# ws_tdb["X3"]='=_xlfn.AGGREGATE(1,6,BB:BB)'
-# ws_tdb["Y3"]='=TABLEAU!M2'
-# ws_tdb["W4"]="Nombre moyen minimal de joueurs normalisé"
-# ws_tdb["X4"]='=_xlfn.AGGREGATE(1,6,BE:BE)'
-# ws_tdb["Y4"]='=TABLEAU!N2'
-# ws_tdb["W5"]="Nombre moyen maximal de joueurs normalisé"
-# ws_tdb["X5"]='=_xlfn.AGGREGATE(1,6,BF:BF)'
-# ws_tdb["Y5"]='=TABLEAU!O2'
-# ws_tdb["W6"]="Temps de partie moyen normalisé"
-# ws_tdb["X6"]='=_xlfn.AGGREGATE(1,6,BG:BG)'
-# ws_tdb["Y6"]='=TABLEAU!P2'
-# ws_tdb["W7"]="Age minimal moyen normalisé"
-# ws_tdb["X7"]='=_xlfn.AGGREGATE(1,6,BH:BH)'
-# ws_tdb["Y7"]='=TABLEAU!Q2'
-# wb.save("output/test/test.xlsx")

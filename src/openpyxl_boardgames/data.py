@@ -1,3 +1,5 @@
+"""Chargement et nettoyage des données source."""
+
 from openpyxl_boardgames.components.utils import _clean_data, normalize
 from openpyxl_boardgames.config import (
     URL1, 

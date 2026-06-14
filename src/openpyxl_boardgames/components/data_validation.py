@@ -1,3 +1,4 @@
+"""Création d'un filtre sous la forme d'une validation de données"""
 
 from openpyxl.worksheet.worksheet import Worksheet
 from openpyxl.worksheet.datavalidation import DataValidation
@@ -7,11 +8,11 @@ def data_validation(ws: Worksheet, worksheet_data: Worksheet,where: str, col_dat
     """_summary_
 
     Args:
-        ws (Worksheet): _description_
-        worksheet_data (Worksheet): _description_
-        where (str): _description_
-        col_data (int): _description_
-        col_ws (int): _description_
+        ws (Worksheet): Worksheet où mettre le filtre
+        worksheet_data (Worksheet): Worksheet où aller chercher les données
+        where (str): Emplacement du filtre
+        col_data (int): Colonne des données
+        col_ws (int): Colonne où sont copiées les données de worksheet_data
     """
     domains=[]
     seen=set()

@@ -1,3 +1,5 @@
+"""Fonction de nettoyage et de normalisation des données"""
+
 import pandas as pd
 
 
@@ -25,7 +27,7 @@ def normalize(df: pd.DataFrame, column: str, new_column: str):
     """Normaliser les données d'une colonne
 
     Args:
-        df (pd.DataFrame): df propre
+        df (pd.DataFrame): df clean
         column (str): colonne à normaliser
         new_column (str): nouvelle colonne
 

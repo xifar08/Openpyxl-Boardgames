@@ -1,37 +1,39 @@
-from openpyxl import load_workbook
+"""Point d'entrée CLI : génération du reporting Excel"""
+
 from openpyxl_boardgames.data import load_data, clean_data
 from openpyxl_boardgames.dashboard import build_workbook
-from openpyxl_boardgames.config import PATH_TEMPLATE, SHEET_DATA
+from openpyxl_boardgames.config import PATH_TEMPLATE, SHEET_DATA, OUTPUT_PATH
+
 import pandas as pd
-# from openpyxl_boardgames.utils import _clean_data, normalize
-# from openpyxl_boardgames.config import URL1, URL2, URL3, COLUMNS, OBJECT_FLOAT, FILL_NA, NEW_TYPE, HIDDEN
-# from openpyxl_boardgames.excel import scatter_chart, bar_chart, data_validation, radar_chart
-# from openpyxl.worksheet.formula import ArrayFormula
-# import time
+from openpyxl import load_workbook
 
 
 
 
 def main():
-    try :
+    """Génère le classeur Excel de reproting à partir des différentes tables de données.
 
-        df_raw=load_data()
+    Orchestre le pipeline complet : chargement et nettoyage des données, enregistrement 
+    en classeur intermédiaire et construction des onglets. Sauvegarde dans OUTPUTH_PATH
+    """
 
-        df_main=clean_data(df_raw)
+    df_raw=load_data()
+    print("Données chargées")
 
-        pd.DataFrame.to_excel(df_main, excel_writer=PATH_TEMPLATE, sheet_name=SHEET_DATA, index=False)
-        print("Données exportées au format .xlsx")
+    df_main=clean_data(df_raw)
+    print("Données nettoyées")
 
-        wb_in=load_workbook(PATH_TEMPLATE)
+    pd.DataFrame.to_excel(df_main, excel_writer=PATH_TEMPLATE, sheet_name=SHEET_DATA, index=False)
+    print("Données exportées au format .xlsx")
 
-        wb_out=build_workbook(wb_in)
+    wb_in=load_workbook(PATH_TEMPLATE)
+    print("Reporting initialisé")
 
-        wb_out.save("output/test/refacto.xlsx")
+    wb_out=build_workbook(wb_in)
+    print("Reporting construit")
 
-        
-
-    except Exception as e:
-        print(f"Erreur : {type(e).__name__}: {e}")
+    wb_out.save(OUTPUT_PATH)
+    print("Reporting exporté avec succés")
 
 
 if __name__ == "__main__":

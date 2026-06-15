@@ -1,2 +1,4 @@
 *.pyc
+*.xlsx
+notes.md
 __pycache__

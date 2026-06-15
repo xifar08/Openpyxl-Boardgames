@@ -49,7 +49,13 @@ L'objectif du projet est de découvrir ce qui caractérise les différentes fami
 
 ## Schéma du projet
 
+### Version initiale
+
 <img src='https://github.com/xifar08/Openpyxl-Boardgames/blob/main/assets/sch%C3%A9ma%20initial.png'>
+
+### Version finale
+
+<img src='https://github.com/xifar08/Openpyxl-Boardgames/blob/main/assets/sch%C3%A9ma%20final.png'>
 
 ## Prérequis
 

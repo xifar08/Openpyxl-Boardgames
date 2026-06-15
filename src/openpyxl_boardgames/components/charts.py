@@ -78,7 +78,7 @@ def bar_chart(
     c1.title="Top 10 BGG : Nombre d'unités de jeux possédées"
     c1.type="col"
     c1.legend = None
-    c1.y_axis.title = "Nombre d'unités jeux possédés"
+    c1.y_axis.title = "Nombre d'unités jeux possédées"
     c1.x_axis.title = 'Jeux'
     c1.height = 12
 

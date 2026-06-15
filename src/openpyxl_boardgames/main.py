@@ -23,6 +23,7 @@ def main():
     df_main=clean_data(df_raw)
     print("Données nettoyées")
 
+    PATH_TEMPLATE.parent.mkdir(parents=True, exist_ok=True)
     pd.DataFrame.to_excel(df_main, excel_writer=PATH_TEMPLATE, sheet_name=SHEET_DATA, index=False)
     print("Données exportées au format .xlsx")
 
@@ -32,6 +33,7 @@ def main():
     wb_out=build_workbook(wb_in)
     print("Reporting construit")
 
+    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     wb_out.save(OUTPUT_PATH)
     print("Reporting exporté avec succés")
 

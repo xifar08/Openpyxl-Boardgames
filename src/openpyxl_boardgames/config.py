@@ -1,5 +1,7 @@
 """Constantes du projet : chemins, références Excel, formules et configuration des données """
 
+from pathlib import Path
+
 # -------------------------------------------------------------------------------------------
 # URL des tables de données
 # -------------------------------------------------------------------------------------------
@@ -96,8 +98,8 @@ NEW_TYPE = {
 # Chemin de l'Excel intermédiaire et de l'Excel final
 # -------------------------------------------------------------------------------------------
 
-PATH_TEMPLATE = "output/template.xlsx"
-OUTPUT_PATH = "results/reporting.xlsx"
+PATH_TEMPLATE = Path("output/template.xlsx")
+OUTPUT_PATH = Path("results/reporting.xlsx")
 
 # -------------------------------------------------------------------------------------------
 # Nom des feuilles dans le reporting

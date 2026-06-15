@@ -10,6 +10,7 @@ from openpyxl_boardgames.config import (
     FILL_NA, 
     NEW_TYPE,
     COLUMNS_TO_NORMALIZE)
+
 import pandas as pd
 
 def load_data() -> pd.DataFrame:
@@ -50,4 +51,3 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
         df_main=normalize(df_main, col, col + " n")
 
     return df_main
-    

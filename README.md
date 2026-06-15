@@ -49,7 +49,7 @@ L'objectif du projet est de découvrir ce qui caractérise les différentes fami
 
 ## Schéma du projet
 
-<img src='https://github.com/xifar08/Openpyxl-Boardgames/blob/main/assets/sch%C3%A9ma%20intitial.png'>
+<img src='https://github.com/xifar08/Openpyxl-Boardgames/blob/main/assets/sch%C3%A9ma%20initial.png'>
 
 ## Prérequis
 
@@ -87,8 +87,8 @@ Openpyxl-Boardgames/
 │   ├── feat-1.ipynb
 │   ├── feat-2.ipynb
 │   ├── feat-3.ipynb
-│   ├── feat-4.ipynb
-│   └── refacto.ipynb
+│   └── feat-4.ipynb
+│  
 │
 └── src/openpyxl_boardgames/
     ├── __init__.py

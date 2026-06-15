@@ -82,6 +82,8 @@ Openpyxl-Boardgames/
 │
 ├── assets/                      # Images / schémas
 │
+├── results/                      # Reporting final disponible ici
+│
 ├── notebooks/
 │   ├── explore.ipynb            # Notebook d'exploration
 │   ├── feat-1.ipynb

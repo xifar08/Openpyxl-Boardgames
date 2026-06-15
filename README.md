@@ -70,7 +70,7 @@ uv sync
 uv run src/openpyxl_boardgames/main.py
 ```
 
-Le reporting est produit dans results/reporting.xlsx .
+Le reporting est produit dans ```results/reporting.xlsx``` . Une copie est disponible sur [MinIO](https://minio.lab.sspcloud.fr/xifar19/boardgames/results/reporting.xlsx)
 
 ## Structure du projet
 

@@ -139,7 +139,7 @@ TITLE_MERGE_TDB= [
 
 KPI_FORMULA_TDB = [
     '=COUNT(AG:AG)',
-    "=E8/23327",
+    "=E8/20327",
     "=_xlfn.AGGREGATE(12,6,AJ:AJ)",
     "=_xlfn.AGGREGATE(1,6,AC:AC)"
 ]

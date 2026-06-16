@@ -37,7 +37,7 @@ Voici les champs utilisés, leur type et leur description :
 
 ## Source
 
-Le jeu de données principal est disponible sur le site [IEE DataPort](https://ieee-dataport.org/open-access/boardgamegeek-dataset-board-games).
+Le jeu de données principal est disponible sur le site [IEEE DataPort](https://ieee-dataport.org/open-access/boardgamegeek-dataset-board-games).
 
 Le second jeu de données est disponible sur [Kaggle](https://www.kaggle.com/datasets/sujaykapadnis/board-games).
 
@@ -90,7 +90,7 @@ Openpyxl-Boardgames/
 │
 ├── results/                     # Reporting final disponible ici
 │
-├── output/                     # fichier excel intermédiaire disponible ici
+├── output/                      # Fichier Excel intermédiaire disponible ici
 │
 ├── notebooks/
 │   ├── explore.ipynb            # Notebook d'exploration
@@ -104,7 +104,7 @@ Openpyxl-Boardgames/
     ├── __init__.py
     ├── config.py                # Constantes : chemins, références Excel, formules, config des données
     ├── data.py                  # Chargement et nettoyage des données source
-    ├── dashboard.py              # Orchestration : assemblage du classeur Excel complet
+    ├── dashboard.py             # Orchestration : assemblage du classeur Excel complet
     ├── main.py                  # Point d'entrée CLI : génération du reporting Excel
     │
     ├── components/

@@ -12,7 +12,7 @@ from openpyxl.chart import (
     Series
 )
 
-def scatter_chart( 
+def add_scatter_chart( 
         worksheet_chart: Worksheet, 
         worksheet_data: Worksheet, 
         where: str, 
@@ -53,7 +53,7 @@ def scatter_chart(
     worksheet_chart.add_chart(c1, where)
 
 
-def bar_chart( 
+def add_bar_chart( 
         worksheet_chart: Worksheet, 
         worksheet_data: Worksheet, 
         where: str, 
@@ -91,7 +91,7 @@ def bar_chart(
     worksheet_chart.add_chart(c1, where)
 
 
-def radar_chart( 
+def add_radar_chart( 
         worksheet_chart: Worksheet, 
         worksheet_data: Worksheet, 
         where: str, 

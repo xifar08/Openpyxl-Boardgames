@@ -16,7 +16,7 @@ from openpyxl_boardgames.config import (
     RADCHART_FORMULA2
     )
 from openpyxl_boardgames.components.data_validation import data_validation
-from openpyxl_boardgames.components.charts import bar_chart, scatter_chart, radar_chart
+from openpyxl_boardgames.components.charts import add_bar_chart, add_scatter_chart, add_radar_chart
 
 from openpyxl import Workbook
 from openpyxl.worksheet.worksheet import Worksheet
@@ -49,12 +49,12 @@ def build_tdb_sheet(wb: Workbook) -> None:
 
     ws_tdb["AA1"] = ArrayFormula("AA1", FORMULA_FILTER)
 
-    scatter_chart(ws_tdb,ws_tdb,where="A12",col_x=37,col_y=35,min_row=1,max_row=1000)
+    add_scatter_chart(ws_tdb,ws_tdb,where="A12",col_x=37,col_y=35,min_row=1,max_row=1000)
 
-    bar_chart(ws_tdb,ws_tdb,where="J12",col_x=28,col_y=38,min_row=1,max_row=10)
+    add_bar_chart(ws_tdb,ws_tdb,where="J12",col_x=28,col_y=38,min_row=1,max_row=10)
 
 
-    radar_chart(ws_tdb,ws_tdb,where="F37",min_row=1,max_row=7,min_col=23)
+    add_radar_chart(ws_tdb,ws_tdb,where="F37",min_row=1,max_row=7,min_col=23)
 
 
 def add_titles(ws: Worksheet)-> None:
